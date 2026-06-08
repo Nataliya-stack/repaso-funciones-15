@@ -3,14 +3,16 @@ const btnValidarEmail = document.getElementById("btn");
 const resultadoEmailTexto = document.getElementById("resultado");
 
 const comprobarEmailValidacion = (email) => {
-    if (typeof email !== "string" || email.trim() === "") {
-        return false;
+    let esValido = false; 
+    
+    if (typeof email === "string" && email.trim() !== "") {
+        const reglaEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+        esValido = reglaEmail.test(email); // Записываем true или false
     }
 
-    const reglaEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
-
-    return reglaEmail.test(email);
+    return esValido; 
 };
+
 
 btnValidarEmail.addEventListener("click", () => {
     const valorEmail = inputEmail.value.trim(); 
